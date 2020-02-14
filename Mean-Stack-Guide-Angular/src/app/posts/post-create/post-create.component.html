@@ -1,6 +1,6 @@
 <h2>The post create component is ready!</h2>
 
 <p>Event listeners below</p>
-<input type="text" [value] = "newPost">
+<input type="text" [(ngModel)]="enteredValue"> 
 <button (click) = "onAddPost()">Save Post</button>
 <p>Button said {{newPost}}</p>

@@ -6,10 +6,11 @@ import { Component } from '@angular/core';
 })
 
 export class PostCreateComponent {
+    enteredValue = '';
     newPost = 'No content';
 
     onAddPost(){
         // alert('Button clicked');
-        this.newPost = 'Property changed';
+        this.newPost = this.enteredValue;
     }
-}
+} 
