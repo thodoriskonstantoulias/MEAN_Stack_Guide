@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
 })
 
 export class PostCreateComponent {
+    newPost = 'No content';
 
+    onAddPost(){
+        // alert('Button clicked');
+        this.newPost = 'Property changed';
+    }
 }
