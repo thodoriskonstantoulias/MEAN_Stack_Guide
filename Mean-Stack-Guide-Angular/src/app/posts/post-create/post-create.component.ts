@@ -19,7 +19,7 @@ export class PostCreateComponent {
         if (form.invalid){
             return;
         }
-        const newPost : Post = {title : form.value.title, content : form.value.content};
+        const newPost : Post = {id: null, title : form.value.title, content : form.value.content};
 
         this.postService.addPost(newPost);
 
