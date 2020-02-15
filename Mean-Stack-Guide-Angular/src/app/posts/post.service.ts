@@ -26,7 +26,7 @@ export class PostService {
         return this.postsUpdated.asObservable();
     }
 
-    addPost(post:Post){
+    addPost(post:Post){ 
         this.posts.push(post);
 
         //Emit the event
