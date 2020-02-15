@@ -1,9 +1,12 @@
 //Setup our server without express
+//And later getting the Express through app.js
 
 const http = require('http');
+const app = require('./backend/app');
 
-const server = http.createServer((req, res) =>{
-    res.end("This is the first response");
-});
+const port = process.env.PORT || 3000;
+app.set('port', port);
 
-server.listen(process.env.PORT || 3000);
+const server = http.createServer(app);
+
+server.listen(port); 
