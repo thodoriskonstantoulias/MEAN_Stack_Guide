@@ -1,6 +1,9 @@
 <h2>The post create component is ready!</h2>
 <mat-card>
     <mat-form-field>
+        <input matInput type="text" [(ngModel)]="enteredTitle"> 
+    </mat-form-field>  
+    <mat-form-field>
         <input matInput type="text" [(ngModel)]="enteredValue"> 
     </mat-form-field>  
     <button mat-raised-button color="primary" (click) = "onAddPost()">Save Post</button>
