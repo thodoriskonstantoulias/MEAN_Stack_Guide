@@ -28,7 +28,8 @@ app.post("/api/posts", (req,res,next)=>{
         title: req.body.title,
         content: req.body.content
     });
-    console.log(post);
+    post.save();
+
     res.status(201).json({
         message: "Post added" 
     });
@@ -36,13 +37,11 @@ app.post("/api/posts", (req,res,next)=>{
 
 //GET request
 app.get('/api/posts', (req,res,next) => {
-    const posts = [
-        {id:"sdbfgkjdsh", title: "First Title", content: "First content"},
-        {id:"hfgnhtrggg", title: "Second Title", content: "Second content"}
-    ];
-    res.status(200).json({
-        message: "Posts fetched",
-        posts: posts
+    Post.find().then(docs=>{
+        res.status(200).json({
+            message: "Posts fetched",
+            posts: docs
+        });
     });
 });
 
