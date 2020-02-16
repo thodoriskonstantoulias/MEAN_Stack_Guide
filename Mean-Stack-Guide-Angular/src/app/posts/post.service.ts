@@ -27,13 +27,11 @@ export class PostService {
     }
 
     addPost(post:Post){ 
-        
-
         //POST the data to server
         this.http.post<{message:string}>("http://localhost:3000/api/posts",post)
             .subscribe((data) => {
                 console.log(data.message);
-                
+
                 this.posts.push(post);
                 //Emit the event
                 this.postsUpdated.next([...this.posts]);
