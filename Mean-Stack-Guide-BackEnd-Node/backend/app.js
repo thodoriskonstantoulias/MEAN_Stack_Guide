@@ -1,8 +1,15 @@
 //Using Express
 const express = require('express');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+
+//Adding MongoDB
+const Post = require('./models/post');
 
 const app = express();
+
+//Connect to MongoDB database
+mongoose.connect("mongodb://localhost:27017/postDB", {useNewUrlParser: true, useUnifiedTopology: true})
 
 app.use(bodyParser.json());
 
@@ -17,7 +24,10 @@ app.use((req,res,next)=>{
 
 //POST request
 app.post("/api/posts", (req,res,next)=>{
-    const post = req.body;
+    const post = new Post({
+        title: req.body.title,
+        content: req.body.content
+    });
     console.log(post);
     res.status(201).json({
         message: "Post added" 
