@@ -40,11 +40,19 @@ export class PostService {
         //POST the data to server
         this.http.post<{message:string}>("http://localhost:3000/api/posts",post)
             .subscribe((data) => {
-                console.log(data.message);
-
                 this.posts.push(post);
                 //Emit the event
                 this.postsUpdated.next([...this.posts]);
             });   
+    }
+
+    deletePost(id:string){
+        this.http.delete("http://localhost:3000/api/posts/" + id)
+            .subscribe(()=>{
+                const updatedPosts = this.posts.filter(post => post.id !== id);
+                this.posts = updatedPosts;
+                //Emit the event
+                this.postsUpdated.next([...this.posts]);
+            });
     }
 }
