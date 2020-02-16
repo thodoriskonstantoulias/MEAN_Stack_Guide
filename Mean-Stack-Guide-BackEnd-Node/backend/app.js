@@ -17,7 +17,7 @@ app.use(bodyParser.json());
 app.use((req,res,next)=>{
     res.header("Access-Control-Allow-Origin","*");
     res.header("Access-Control-Allow-Headers","Origin, X-Requested-With, Content-Type, Accept");
-    res.header("Access-Control-Allow-Methods","GET, POST, PATCH, DELETE, OPTIONS");
+    res.header("Access-Control-Allow-Methods","GET, POST, PUT, DELETE, OPTIONS");
 
     next();
 });
@@ -41,6 +41,21 @@ app.get('/api/posts', (req,res,next) => {
         res.status(200).json({
             message: "Posts fetched",
             posts: docs
+        });
+    });
+});
+
+//PUT request
+app.put('/api/posts/:id', (req,res,next) => {
+    const post = new Post({
+        _id : req.body.id,
+        title : req.body.title,
+        content : req.body.content
+    });
+
+    Post.updateOne({_id : req.params.id}, post).then(()=>{
+        res.status(200).json({
+            message : 'Post updated'
         });
     });
 });
