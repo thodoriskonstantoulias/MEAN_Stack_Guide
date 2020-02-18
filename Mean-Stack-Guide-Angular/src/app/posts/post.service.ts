@@ -41,9 +41,14 @@ export class PostService {
         return this.http.get<{_id:string,title:string,content:string}>("http://localhost:3000/api/posts/" + id);
     }
 
-    addPost(post:Post){ 
+    addPost(post:Post, image:File){ 
+        const postData = new FormData();
+        postData.append("title" , post.title);
+        postData.append("content" , post.content);
+        postData.append("image" , image, post.title);
+
         //POST the data to server
-        this.http.post<{message:string}>("http://localhost:3000/api/posts",post)
+        this.http.post<{message:string}>("http://localhost:3000/api/posts",postData)
             .subscribe((data) => {
                 this.posts.push(post);
                 //Emit the event
