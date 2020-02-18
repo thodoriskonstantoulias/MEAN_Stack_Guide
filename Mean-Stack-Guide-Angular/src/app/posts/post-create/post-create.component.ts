@@ -37,7 +37,7 @@ export class PostCreateComponent implements OnInit {
                 this.isLoading = true;
                 this.postService.getPost(this.postId).subscribe(post => {
                         this.isLoading = false;
-                        this.post = {id:post._id,title:post.title,content:post.content};
+                        this.post = {id:post._id,title:post.title,content:post.content, imagePath:null};
                         this.form.setValue({'title': this.post.title, 'content': this.post.content});
                 });
             } else {
@@ -56,7 +56,7 @@ export class PostCreateComponent implements OnInit {
         //flag for spinner
         this.isLoading = true;
         
-        const newPost : Post = {id: null, title : this.form.value.title, content : this.form.value.content};
+        const newPost : Post = {id: null, title : this.form.value.title, content : this.form.value.content, imagePath: this.form.value.image};
 
         if (this.mode === 'create'){
             this.postService.addPost(newPost,this.form.value.image);

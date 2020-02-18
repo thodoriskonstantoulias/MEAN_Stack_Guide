@@ -2,6 +2,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const path = require('path');
 
 //Import routes
 const postsRoutes = require('./routes/posts');
@@ -12,6 +13,8 @@ const app = express();
 mongoose.connect("mongodb://localhost:27017/postDB", {useNewUrlParser: true, useUnifiedTopology: true})
 
 app.use(bodyParser.json());
+//Make our images public 
+app.use("/images", express.static(path.join("backend/images")));
 
 //Enable CORS
 app.use((req,res,next)=>{

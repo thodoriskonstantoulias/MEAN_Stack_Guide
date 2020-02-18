@@ -22,7 +22,8 @@ export class PostService {
                     return {
                         title: post.title,
                         content : post.content,
-                        id : post._id
+                        id : post._id,
+                        imagePath : post.imagePath
                     };
                 });
             }))
@@ -48,7 +49,7 @@ export class PostService {
         postData.append("image" , image, post.title);
 
         //POST the data to server
-        this.http.post<{message:string}>("http://localhost:3000/api/posts",postData)
+        this.http.post<{message:string, post:Post}>("http://localhost:3000/api/posts",postData)
             .subscribe((data) => {
                 this.posts.push(post);
                 //Emit the event
@@ -58,7 +59,7 @@ export class PostService {
     }
 
     updatePost(id:string, post: Post){
-        const updatedPost : Post = {id:id, title: post.title, content : post.content};
+        const updatedPost : Post = {id:id, title: post.title, content : post.content, imagePath:null};
         this.http.put("http://localhost:3000/api/posts/" + id, updatedPost)
             .subscribe((data)=> {
                 const updatedPosts = [...this.posts];

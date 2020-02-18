@@ -4,7 +4,8 @@ const mongoose = require('mongoose');
 //Create schema 
 const postSchema = mongoose.Schema({
     title: String,
-    content : String
+    content : String,
+    imagePath: String
 });
 
 //Create the model and export it
