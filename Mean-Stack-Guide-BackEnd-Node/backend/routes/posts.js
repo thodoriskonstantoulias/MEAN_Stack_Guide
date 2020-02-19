@@ -53,7 +53,17 @@ router.post("/api/posts", multer({storage:storage}).single("image"), (req,res,ne
 
 //GET request
 router.get('/api/posts', (req,res,next) => {
-    Post.find().then(docs=>{
+    //Pagination values from query string
+    //Note -- what comes from query is a string so we convert to number by preceding +
+    const pageSize = +req.query.pageSize;
+    const currentPage = +req.query.page;
+    const postQuery = Post.find();
+
+    if (pageSize && currentPage){
+        postQuery.skip(pageSize * (currentPage - 1)).limit(pageSize);
+    }
+
+    postQuery.then(docs=>{
         res.status(200).json({
             message: "Posts fetched",
             posts: docs
