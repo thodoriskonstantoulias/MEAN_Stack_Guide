@@ -55,7 +55,7 @@ router.post("/api/posts", multer({storage:storage}).single("image"), (req,res,ne
 router.get('/api/posts', (req,res,next) => {
     //Pagination values from query string
     //Note -- what comes from query is a string so we convert to number by preceding +
-    const pageSize = +req.query.pageSize;
+    const pageSize = +req.query.pagesize;
     const currentPage = +req.query.page;
     const postQuery = Post.find();
 
