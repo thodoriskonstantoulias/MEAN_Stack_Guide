@@ -1,0 +1,14 @@
+<h2>Register</h2>
+<mat-card>
+    <form (submit)="onRegister(registerForm)" #registerForm>
+        <mat-form-field>
+            <input matInput type="email" placeholder="Email" name="email" ngModel #emailInput="ngModel" required>  
+            <mat-error *ngIf="emailInput.invalid">Enter an email</mat-error> 
+        </mat-form-field>  
+        <mat-form-field>
+            <input matInput type="password" placeholder="Password" name="password" ngModel #passwordInput="ngModel" required>  
+            <mat-error *ngIf="passwordInput.invalid">Enter a password</mat-error> 
+        </mat-form-field>     
+        <button mat-raised-button color="primary" type="submit">Register</button>
+    </form>   
+</mat-card>
