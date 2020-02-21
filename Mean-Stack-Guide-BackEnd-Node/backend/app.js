@@ -6,6 +6,7 @@ const path = require('path');
 
 //Import routes
 const postsRoutes = require('./routes/posts');
+const userRoutes = require('./routes/user');
 
 const app = express();
 
@@ -26,5 +27,6 @@ app.use((req,res,next)=>{
 });
 
 app.use(postsRoutes);
+app.use(userRoutes);
 
 module.exports = app;
