@@ -1,6 +1,9 @@
 const express = require('express');
 const router = express.Router();
 
+//Adding authorization through middleware 
+const checkAuth = require('../middleware/check-auth'); 
+
 //Adding multer to understand image file
 const multer = require('multer');
 const MIME_TYPE_MAP = {
@@ -30,7 +33,8 @@ const storage = multer.diskStorage({
 });
 
 //POST request
-router.post("/api/posts", multer({storage:storage}).single("image"), (req,res,next)=>{
+//We will add authorization here
+router.post("/api/posts", checkAuth, multer({storage:storage}).single("image"), (req,res,next)=>{
     const url = req.protocol + '://' + req.get("host");
 
     const post = new Post({
@@ -84,7 +88,7 @@ router.get('/api/posts/:id', (req,res,next) => {
 }); 
 
 //PUT request
-router.put('/api/posts/:id', (req,res,next) => {
+router.put('/api/posts/:id',checkAuth,  (req,res,next) => {
     const post = new Post({
         _id : req.body.id,
         title : req.body.title,
@@ -99,7 +103,7 @@ router.put('/api/posts/:id', (req,res,next) => {
 });
 
 //DELETE request
-router.delete('/api/posts/:id', (req,res,next) => {
+router.delete('/api/posts/:id',checkAuth, (req,res,next) => {
 
     Post.deleteOne({_id:req.params.id}).then(result =>{
         console.log(result);
