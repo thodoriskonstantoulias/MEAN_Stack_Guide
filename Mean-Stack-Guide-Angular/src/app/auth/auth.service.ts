@@ -13,10 +13,10 @@ export class AuthService {
         const authData : AuthData = {
             email : email,
             password : password
-        }
+        };
         this.http.post("http://localhost:3000/api/user/signup",authData)
             .subscribe(data => {
-                 
+                console.log(data); 
             });
     }
 }

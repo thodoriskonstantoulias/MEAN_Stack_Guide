@@ -1,8 +1,8 @@
 <h2>Register</h2>
 <mat-card>
-    <form (submit)="onRegister(registerForm)" #registerForm>
+    <form (submit)="onRegister(registerForm)" #registerForm="ngForm">
         <mat-form-field>
-            <input matInput type="email" placeholder="Email" name="email" ngModel #emailInput="ngModel" required>  
+            <input matInput type="text" placeholder="Email" name="email" ngModel #emailInput="ngModel" required email>  
             <mat-error *ngIf="emailInput.invalid">Enter an email</mat-error> 
         </mat-form-field>  
         <mat-form-field>

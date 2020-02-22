@@ -20,11 +20,10 @@ router.post("/api/user/signup", (req,res,next) => {
         })
         .catch(err => {
             res.status(500).json({
-                err : err
+                error : err
             });
         });
     });
 });
-
 
 module.exports = router;
